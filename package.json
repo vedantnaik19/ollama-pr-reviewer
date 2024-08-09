@@ -5,7 +5,7 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "package": "ncc build src/index.js -o review-action/dist"
+    "package": "ncc build src/index.js -o dist"
   },
   "author": "",
   "license": "MIT",
