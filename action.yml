@@ -1,23 +1,27 @@
-name: "Review Action"
-description: "JS Action to review code using local Ollama API"
+name: "Ollama PR Reviewer"
+description: "A JavaScript GitHub Action that retrieves the git diff of a pull request and reviews using the Ollama API."
 
 inputs:
-  concurrency:
-    description: Number of API calls to make concurrently
-    required: true
-    default: 2
-
   model:
-    description: "Name of the Ollama model"
+    description: "Ollama model name and version. Eg. 'codellama:7b'"
     required: true
 
-  git_diff_file_path:
-    description: Abs file path of git diff .txt file
+  base-url:
+    description: "The base URL of the Ollama endpoint. Eg. http://127.0.0.1:11434"
     required: true
 
   prompt:
-    description: Prompt
-    default: "Review the following code"
+    description: "A multiline string input that provides detailed instructions to the LLM."
+    default: |
+      Please review the following git diff and provide brief feedback on:
+
+      Code Quality: Any improvements needed?
+      Functionality: Any issues or bugs?
+      Performance: Any potential impacts?
+      Security: Any concerns?
+      Documentation: Any missing comments?
+
+      Here's the git diff:
 
 runs:
   using: "node20"

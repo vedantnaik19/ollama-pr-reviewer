@@ -1,21 +1,30 @@
 {
-  "name": "ollama-review",
-  "version": "1.0.0",
-  "description": "",
+  "name": "ollama-pr-reviewer",
+  "version": "0.0.1",
+  "description": "A JavaScript GitHub Action that retrieves the git diff of a pull request and reviews using Ollama API.",
   "type": "module",
-  "main": "src/index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "package": "ncc build src/index.js -o dist"
+    "lint": "gts lint",
+    "clean": "gts clean && rimraf dist",
+    "fix": "gts fix",
+    "package": "yarn clean && ncc build src/index.ts"
   },
-  "author": "",
+  "author": "Vedant Naik",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
-    "node-fetch": "^3.3.2",
-    "p-limit": "^6.1.0"
+    "@langchain/community": "^0.2.31",
+    "@langchain/ollama": "^0.0.4",
+    "@octokit/rest": "^21.0.1",
+    "axios": "^1.7.3",
+    "langchain": "^0.2.15"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.38.1"
+    "@types/node": "20.12.7",
+    "@vercel/ncc": "^0.38.1",
+    "gts": "^5.3.1",
+    "typescript": "^5.4.3"
   }
 }
