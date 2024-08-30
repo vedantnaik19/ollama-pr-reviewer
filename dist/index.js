@@ -39895,7 +39895,6 @@ function generateReview(model, baseUrl, prompt, fileDiffs) {
                 finally { if (e_1) throw e_1.error; }
             }
             console.log(chunks.join(""));
-            console.log("\n");
         }));
     });
 }
@@ -39962,10 +39961,9 @@ function getPRDiff() {
         const filteredFiles = files.filter(file => {
             var _a;
             const str = JSON.stringify((_a = file === null || file === void 0 ? void 0 : file.patch) !== null && _a !== void 0 ? _a : {});
-            return str.length > 0 && str.length <= 5000;
+            return str.length > 0 && str.length <= 500;
         });
         const modFiles = filteredFiles.map(file => `File Name: ${file.filename}\nStatus: ${file.status}${file.patch ? `\nGit Diff:\n${file.patch}` : ""}`);
-        console.log(modFiles);
         return modFiles;
     });
 }
@@ -39995,8 +39993,7 @@ function run() {
         try {
             const { model, baseUrl, prompt } = (0, getInputs_1.getInputs)();
             const fileDiffs = yield (0, getPRDiff_1.getPRDiff)();
-            const review = yield (0, generateReview_1.generateReview)(model, baseUrl, prompt, fileDiffs);
-            console.log(review);
+            yield (0, generateReview_1.generateReview)(model, baseUrl, prompt, fileDiffs);
         }
         catch (e) {
             console.log(e);
