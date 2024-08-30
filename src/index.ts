@@ -7,8 +7,7 @@ async function run() {
     const { model, baseUrl, prompt }: Inputs = getInputs();
     const fileDiffs = await getPRDiff();
 
-    const review = await generateReview(model, baseUrl, prompt, fileDiffs);
-    console.log(review);
+    await generateReview(model, baseUrl, prompt, fileDiffs);
   } catch (e) {
     console.log(e);
   }

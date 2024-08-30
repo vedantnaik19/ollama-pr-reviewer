@@ -26,7 +26,7 @@ export async function getPRDiff(): Promise<string[]> {
   // Discard large diffs for now
   const filteredFiles = files.filter(file => {
     const str = JSON.stringify(file?.patch ?? {});
-    return str.length > 0 && str.length <= 5000;
+    return str.length > 0 && str.length <= 1000;
   });
 
   const modFiles = filteredFiles.map(
